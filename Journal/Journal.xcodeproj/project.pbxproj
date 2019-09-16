@@ -12,6 +12,7 @@
 		9E81F67C23301A8000D23250 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E81F67A23301A8000D23250 /* Main.storyboard */; };
 		9E81F67E23301A8100D23250 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E81F67D23301A8100D23250 /* Assets.xcassets */; };
 		9E81F68123301A8200D23250 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E81F67F23301A8200D23250 /* LaunchScreen.storyboard */; };
+		9E81F68923301FA300D23250 /* EntriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81F68823301FA300D23250 /* EntriesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		9E81F67D23301A8100D23250 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E81F68023301A8200D23250 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E81F68223301A8200D23250 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E81F68823301FA300D23250 /* EntriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				9E81F67623301A8000D23250 /* AppDelegate.swift */,
 				9E81F67823301A8000D23250 /* ViewController.swift */,
+				9E81F68823301FA300D23250 /* EntriesTableViewController.swift */,
 				9E81F67A23301A8000D23250 /* Main.storyboard */,
 				9E81F67D23301A8100D23250 /* Assets.xcassets */,
 				9E81F67F23301A8200D23250 /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E81F68923301FA300D23250 /* EntriesTableViewController.swift in Sources */,
 				9E81F67923301A8000D23250 /* ViewController.swift in Sources */,
 				9E81F67723301A8000D23250 /* AppDelegate.swift in Sources */,
 			);
