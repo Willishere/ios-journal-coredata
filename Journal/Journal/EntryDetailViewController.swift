@@ -9,11 +9,15 @@
 import UIKit
 
 class EntryDetailViewController: UIViewController {
-
+    @IBOutlet weak var titleLabel: UITextField!
+    @IBOutlet weak var textViewLabel: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
     }
     
 

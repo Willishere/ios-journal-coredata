@@ -125,7 +125,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ZEt-uL-m2o"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Journelle" id="Lvd-lB-Gbf"/>
+                    <navigationItem key="navigationItem" title="Journelle" id="Lvd-lB-Gbf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mhh-s0-bgD">
+                            <connections>
+                                <action selector="saveButton:" destination="FHG-Bk-LsQ" id="2qM-SS-vig"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="textViewLabel" destination="NbA-9Q-dUQ" id="QAS-L5-9OI"/>
+                        <outlet property="titleLabel" destination="bP8-bw-53t" id="hOP-38-tLY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCT-ng-tSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
