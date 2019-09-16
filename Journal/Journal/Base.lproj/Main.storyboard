@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="m5w-Ry-0tZ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="m5w-Ry-0tZ" customClass="EntryTableViewCell" customModule="Journal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m5w-Ry-0tZ" id="FiK-4c-0Rd">
@@ -66,6 +66,12 @@
                                         <constraint firstItem="X6q-Nm-lab" firstAttribute="top" secondItem="FiK-4c-0Rd" secondAttribute="top" constant="10" id="qCX-o3-hcE"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="boldLabel" destination="X6q-Nm-lab" id="f0y-3G-hlA"/>
+                                    <outlet property="dateLabel" destination="OOo-MX-tbz" id="GIl-0B-goj"/>
+                                    <outlet property="journaltextField" destination="4rP-i1-g4e" id="91T-Ox-bH9"/>
+                                    <outlet property="timeStamp" destination="s9H-M5-wyr" id="Q7G-GR-CD1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -85,16 +91,41 @@
             </objects>
             <point key="canvasLocation" x="1744.9275362318842" y="100.44642857142857"/>
         </scene>
-        <!--View Controller-->
+        <!--Journelle-->
         <scene sceneID="gEZ-uT-xhT">
             <objects>
-                <viewController id="FHG-Bk-LsQ" sceneMemberID="viewController">
+                <viewController id="FHG-Bk-LsQ" customClass="EntryDetailViewController" customModule="Journal" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PEN-t3-Pan">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bP8-bw-53t">
+                                <rect key="frame" x="20" y="176" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NbA-9Q-dUQ">
+                                <rect key="frame" x="20" y="253" width="374" height="589"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ZEt-uL-m2o" firstAttribute="trailing" secondItem="bP8-bw-53t" secondAttribute="trailing" constant="20" id="AGW-2m-7p4"/>
+                            <constraint firstItem="NbA-9Q-dUQ" firstAttribute="leading" secondItem="ZEt-uL-m2o" secondAttribute="leading" constant="20" id="BIw-69-iZb"/>
+                            <constraint firstItem="NbA-9Q-dUQ" firstAttribute="top" secondItem="bP8-bw-53t" secondAttribute="bottom" constant="47" id="D7a-84-qjr"/>
+                            <constraint firstItem="ZEt-uL-m2o" firstAttribute="bottom" secondItem="NbA-9Q-dUQ" secondAttribute="bottom" constant="20" id="PQg-SJ-Tz1"/>
+                            <constraint firstItem="bP8-bw-53t" firstAttribute="leading" secondItem="ZEt-uL-m2o" secondAttribute="leading" constant="20" id="gGz-Qx-Bze"/>
+                            <constraint firstItem="ZEt-uL-m2o" firstAttribute="trailing" secondItem="NbA-9Q-dUQ" secondAttribute="trailing" constant="20" id="soa-Fy-mK1"/>
+                            <constraint firstItem="bP8-bw-53t" firstAttribute="top" secondItem="ZEt-uL-m2o" secondAttribute="top" constant="36" id="u08-ye-RDX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZEt-uL-m2o"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Journelle" id="Lvd-lB-Gbf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCT-ng-tSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
