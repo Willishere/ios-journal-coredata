@@ -68,7 +68,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="boldLabel" destination="X6q-Nm-lab" id="f0y-3G-hlA"/>
-                                    <outlet property="dateLabel" destination="OOo-MX-tbz" id="GIl-0B-goj"/>
+                                    <outlet property="dateLabel" destination="OOo-MX-tbz" id="MuD-MC-JFR"/>
                                     <outlet property="journaltextField" destination="4rP-i1-g4e" id="91T-Ox-bH9"/>
                                     <outlet property="timeStamp" destination="s9H-M5-wyr" id="Q7G-GR-CD1"/>
                                 </connections>
@@ -126,11 +126,7 @@
                         <viewLayoutGuide key="safeArea" id="ZEt-uL-m2o"/>
                     </view>
                     <navigationItem key="navigationItem" title="Journelle" id="Lvd-lB-Gbf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mhh-s0-bgD">
-                            <connections>
-                                <action selector="saveButton:" destination="FHG-Bk-LsQ" id="2qM-SS-vig"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mhh-s0-bgD"/>
                     </navigationItem>
                     <connections>
                         <outlet property="textViewLabel" destination="NbA-9Q-dUQ" id="QAS-L5-9OI"/>

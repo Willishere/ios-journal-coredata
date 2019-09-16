@@ -13,5 +13,8 @@ class EntryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var journaltextField: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    
     @IBOutlet weak var timeStamp: UILabel!
+    
+    
 }
