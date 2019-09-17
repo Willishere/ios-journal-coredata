@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Journal
 //
-//  Created by William Chen on 9/16/19.
-//  Copyright © 2019 William Chen. All rights reserved.
+//  Created by Jordan Christensen on 9/17/19.
+//  Copyright © 2019 Mazjap Co Technologies. All rights reserved.
 //
 
 import UIKit
