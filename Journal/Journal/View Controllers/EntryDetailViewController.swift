@@ -9,6 +9,7 @@
 import UIKit
 
 class EntryDetailViewController: UIViewController {
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var isDarkMode: Bool?
     var entryController: EntryController?
@@ -25,6 +26,7 @@ class EntryDetailViewController: UIViewController {
         super.viewDidLoad()
         updateViews()
         
+    segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
         setUI()
     }
     
