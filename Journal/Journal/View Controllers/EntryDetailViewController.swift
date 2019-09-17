@@ -24,11 +24,14 @@ class EntryDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
         
     segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
     segmentedControl.selectedSegmentIndex = 1
         setUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateViews()
     }
     
     func setUI() {
@@ -75,17 +78,17 @@ class EntryDetailViewController: UIViewController {
             
             titleTextField.text = entry?.title
             journalEntryTextView.text = entry?.bodyText
-        }
         
-        if let moodString = entry?.mood,
-            let mood = EntryMood(rawValue: moodString){
-            let index = EntryMood.allCases.firstIndex(of: mood)
-            
-            segmentedControl.selectedSegmentIndex = index ?? 0
-            
+        
+            if let moodString = entry?.mood,
+                let mood = EntryMood(rawValue: moodString){
+                let index = EntryMood.allCases.firstIndex(of: mood)
+                
+                segmentedControl.selectedSegmentIndex = index ?? 0
+                
+            }
         }
     }
-    
     
     @IBAction func saveTapped(_ sender: UIButton) {
         let mood = EntryMood.allCases[segmentedControl.selectedSegmentIndex]

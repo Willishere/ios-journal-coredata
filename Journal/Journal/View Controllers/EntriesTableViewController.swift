@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class EntriesTableViewController: UITableViewController {
+class EntriesTableViewController: UITableViewController  {
     
     var isDarkMode: Bool = false
     
@@ -16,7 +17,30 @@ class EntriesTableViewController: UITableViewController {
     @IBOutlet weak var noEntriesLabel: UILabel!
     
     let entryController = EntryController()
-
+    
+    lazy var fetchResultsController: NSFetchedResultsController<Entry> = {
+        
+        let fetchRequest: NSFetchRequest<Entry> = Entry.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "mood", ascending: true),NSSortDescriptor(key: "timeStamp", ascending: true)]
+        
+        // YOU MUST make the descriptor with the same key path as the sectionNameKeyPath be the first sort descriptor in this array
+        
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest,
+                                             managedObjectContext: CoreDataStack.shared.mainContext,
+                                             sectionNameKeyPath: "mood",
+                                             cacheName: nil)
+        
+        frc.delegate = self
+        
+        do {
+            try frc.performFetch()
+        } catch {
+            fatalError("Error performing fetch for frc: \(error)")
+        }
+        
+        return frc
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 50;
@@ -27,7 +51,7 @@ class EntriesTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        if entryController.entries.count >= 1 {
+        if fetchResultsController.sections?.count ?? 0 >= 1 {
             noEntriesLabel.isHidden = true
         } else {
             noEntriesLabel.isHidden = false
@@ -64,17 +88,19 @@ class EntriesTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    override func numberOfSections(in tableView: UITableView) -> Int {
+          return fetchResultsController.sections?.count ?? 0
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return entryController.entries.count
+        return fetchResultsController.sections?[section].numberOfObjects ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "JournalCell", for: indexPath) as? EntryTableViewCell else { return UITableViewCell() }
         
         cell.isDarkMode = isDarkMode
-        cell.entry = entryController.entries[indexPath.row]
+        cell.entry = fetchResultsController.object(at: indexPath)
 
         return cell
     }
@@ -82,11 +108,19 @@ class EntriesTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            entryController.deleteEntry(entry: entryController.entries[indexPath.row])
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        }
-    }
+            let entry = fetchResultsController.object(at: indexPath)
+            entryController.deleteEntry(entry: entry)
 
+        }
+        
+    }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        guard let sectionInfo = fetchResultsController.sections?[section] else { return nil }
+        
+        return sectionInfo.name.capitalized
+    }
+    
     @IBAction func toggleDarkMode(_ sender: Any) {
         isDarkMode = !isDarkMode
         setUI()
@@ -101,11 +135,62 @@ class EntriesTableViewController: UITableViewController {
                 let indexPath = tableView.indexPathForSelectedRow else { return }
             detailVC.isDarkMode = isDarkMode
             detailVC.entryController = entryController
-            detailVC.entry = entryController.entries[indexPath.row]
+            detailVC.entry = fetchResultsController.object(at: indexPath)
         } else if segue.identifier == "ShowAddJournalSegue" {
             guard let detailVC = segue.destination as? EntryDetailViewController else { return }
             detailVC.entryController = entryController
             detailVC.isDarkMode = isDarkMode
+        }
+    }
+}
+
+extension EntriesTableViewController: NSFetchedResultsControllerDelegate{
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any,
+                    at indexPath: IndexPath?,
+                    for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            guard let newIndexPath = newIndexPath else { return }
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        case .delete:
+            guard let indexPath = indexPath else { return }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .move:
+            guard let indexPath = indexPath,
+                let newIndexPath = newIndexPath else { return }
+            tableView.moveRow(at: indexPath, to: newIndexPath)
+        case .update:
+            guard let indexPath = indexPath else { return }
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        @unknown default:
+            return
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo,
+                    atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
+        
+        let sectionSet = IndexSet(integer: sectionIndex)
+        
+        switch type {
+        case .insert:
+            tableView.insertSections(sectionSet, with: .automatic)
+        case .delete:
+            tableView.deleteSections(sectionSet, with: .automatic)
+        default:
+            return
         }
     }
 }
