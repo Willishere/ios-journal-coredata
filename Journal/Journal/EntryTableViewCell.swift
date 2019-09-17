@@ -9,12 +9,25 @@
 import UIKit
 
 class EntryTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var boldLabel: UILabel!
     
     @IBOutlet weak var journaltextField: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var timeStamp: UILabel!
+    var entryController: EntryController?
     
+    
+    
+    var entry: Entry?{
+        didSet{
+            updateViews()
+        }
+    }
+    
+    func updateViews(){
+        
+    }
     
 }

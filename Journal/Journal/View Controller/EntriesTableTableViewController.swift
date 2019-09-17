@@ -10,6 +10,9 @@ import UIKit
 
 class EntriesTableTableViewController: UITableViewController {
     
+    let entryController = EntryController()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,25 +25,26 @@ class EntriesTableTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return entryController.loadFromPersistence().count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+     let cell = tableView.dequeueReusableCell(withIdentifier: "newEntryIdentifier", for: indexPath)
+        cell.textLabel?.text = entryController.loadFromPersistence()[indexPath.row].title
+        
+        
+        
+        
+        
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -77,14 +81,16 @@ class EntriesTableTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let entryDVC = segue.destination as? EntryTableViewCell else {return}
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
