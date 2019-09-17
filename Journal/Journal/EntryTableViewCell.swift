@@ -15,7 +15,7 @@ class EntryTableViewCell: UITableViewCell {
     @IBOutlet weak var journaltextField: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var timeStamp: UILabel!
+
     var entryController: EntryController?
     
     
@@ -25,8 +25,19 @@ class EntryTableViewCell: UITableViewCell {
             updateViews()
         }
     }
+    var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy HH:mm"
+        return formatter
+    }()
     
     func updateViews(){
+        guard let entry = entry else {return}
+        
+        boldLabel.text = entry.title
+        
+        journaltextField.text = entry.bodyText
+        dateLabel.text = dateFormatter.string(from: entry.timeStamp ?? Date())
         
     }
     

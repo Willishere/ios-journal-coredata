@@ -15,36 +15,44 @@ class EntriesTableTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        
+    }
 
     // MARK: - Table view data source
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return entryController.loadFromPersistence().count
+        return entryController.entries.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-     let cell = tableView.dequeueReusableCell(withIdentifier: "newEntryIdentifier", for: indexPath)
-        cell.textLabel?.text = entryController.loadFromPersistence()[indexPath.row].title
+     guard let cell = tableView.dequeueReusableCell(withIdentifier: "entryCell", for: indexPath) as? EntryTableViewCell
+        else {return UITableViewCell()}
         
+        cell.entry = entryController.entries[indexPath.row]
         
-        
-        
-        
-
-        // Configure the cell...
 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            entryController.delete(entry: entryController.entries[indexPath.row])
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -54,17 +62,10 @@ class EntriesTableTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+
+    
 
     /*
     // Override to support rearranging the table view.
@@ -86,8 +87,16 @@ class EntriesTableTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let entryDVC = segue.destination as? EntryTableViewCell else {return}
+        guard let entryDVC = segue.destination as? EntryDetailViewController else {return}
         
+        if segue.identifier == "newEntryIdentifier"{
+            entryDVC.entryController = entryController
+        }else if segue.identifier == "showDetailSegue"{
+            guard let indexPath = tableView.indexPathForSelectedRow else {return}
+            entryDVC.entryController = entryController
+            entryDVC.entry = entryController.entries[indexPath.row]
+            
+        }
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }

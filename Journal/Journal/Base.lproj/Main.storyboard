@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="77" id="m5w-Ry-0tZ" customClass="EntryTableViewCell" customModule="Journal" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="entryCell" rowHeight="77" id="m5w-Ry-0tZ" customClass="EntryTableViewCell" customModule="Journal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="77"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m5w-Ry-0tZ" id="FiK-4c-0Rd">
@@ -27,13 +27,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OOo-MX-tbz">
-                                            <rect key="frame" x="308" y="11" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9H-M5-wyr">
-                                            <rect key="frame" x="358" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="352" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -56,13 +50,10 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="OOo-MX-tbz" firstAttribute="top" secondItem="FiK-4c-0Rd" secondAttribute="topMargin" id="6Nl-c8-QdI"/>
-                                        <constraint firstAttribute="trailing" secondItem="OOo-MX-tbz" secondAttribute="trailing" constant="64" id="AfS-wi-fAP"/>
-                                        <constraint firstItem="OOo-MX-tbz" firstAttribute="baseline" secondItem="s9H-M5-wyr" secondAttribute="baseline" id="Bxl-by-326"/>
+                                        <constraint firstAttribute="trailing" secondItem="OOo-MX-tbz" secondAttribute="trailing" constant="20" id="AfS-wi-fAP"/>
                                         <constraint firstItem="X6q-Nm-lab" firstAttribute="leading" secondItem="FiK-4c-0Rd" secondAttribute="leading" constant="10" id="F76-1o-rv9"/>
                                         <constraint firstItem="4rP-i1-g4e" firstAttribute="top" secondItem="FiK-4c-0Rd" secondAttribute="topMargin" constant="25" id="PYm-xr-1ss"/>
-                                        <constraint firstItem="s9H-M5-wyr" firstAttribute="leading" secondItem="OOo-MX-tbz" secondAttribute="trailing" constant="8" symbolic="YES" id="T51-QN-s16"/>
                                         <constraint firstItem="4rP-i1-g4e" firstAttribute="leading" secondItem="X6q-Nm-lab" secondAttribute="leading" id="erE-oe-W7y"/>
-                                        <constraint firstItem="OOo-MX-tbz" firstAttribute="firstBaseline" secondItem="s9H-M5-wyr" secondAttribute="firstBaseline" id="ps2-5g-Zxw"/>
                                         <constraint firstItem="X6q-Nm-lab" firstAttribute="top" secondItem="FiK-4c-0Rd" secondAttribute="top" constant="10" id="qCX-o3-hcE"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -70,7 +61,7 @@
                                     <outlet property="boldLabel" destination="X6q-Nm-lab" id="f0y-3G-hlA"/>
                                     <outlet property="dateLabel" destination="OOo-MX-tbz" id="MuD-MC-JFR"/>
                                     <outlet property="journaltextField" destination="4rP-i1-g4e" id="91T-Ox-bH9"/>
-                                    <outlet property="timeStamp" destination="s9H-M5-wyr" id="Q7G-GR-CD1"/>
+                                    <segue destination="FHG-Bk-LsQ" kind="show" identifier="showDetailSegue" id="FDk-nS-cwW"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -105,10 +96,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NbA-9Q-dUQ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NbA-9Q-dUQ">
                                 <rect key="frame" x="20" y="253" width="374" height="589"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -126,7 +116,11 @@
                         <viewLayoutGuide key="safeArea" id="ZEt-uL-m2o"/>
                     </view>
                     <navigationItem key="navigationItem" title="Journelle" id="Lvd-lB-Gbf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mhh-s0-bgD"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mhh-s0-bgD">
+                            <connections>
+                                <action selector="saveButton:" destination="FHG-Bk-LsQ" id="aK9-Ud-SIi"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="textViewLabel" destination="NbA-9Q-dUQ" id="QAS-L5-9OI"/>
@@ -156,4 +150,7 @@
             <point key="canvasLocation" x="834.78260869565224" y="99.776785714285708"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="FDk-nS-cwW"/>
+    </inferredMetricsTieBreakers>
 </document>
