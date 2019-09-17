@@ -9,7 +9,6 @@
 import UIKit
 
 class EntryDetailViewController: UIViewController {
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var isDarkMode: Bool?
     var entryController: EntryController?
@@ -19,18 +18,22 @@ class EntryDetailViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var moodSegmentedControl: UISegmentedControl!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var journalEntryTextView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
-    segmentedControl.selectedSegmentIndex = 1
+        moodSegmentedControl.selectedSegmentIndex = 1
+        moodSegmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor:UIColor.white], for: .selected)
+        
         setUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         updateViews()
     }
     
@@ -42,7 +45,7 @@ class EntryDetailViewController: UIViewController {
             
             titleTextField.backgroundColor = .textFieldBackground
             titleTextField.attributedPlaceholder = NSAttributedString(string: "Enter Title:",
-                attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+                                                                      attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
             titleTextField.textColor = .textColor
             
             journalEntryTextView.layer.borderWidth = 0.5
@@ -78,21 +81,19 @@ class EntryDetailViewController: UIViewController {
             
             titleTextField.text = entry?.title
             journalEntryTextView.text = entry?.bodyText
-        
-        
+            
             if let moodString = entry?.mood,
-                let mood = EntryMood(rawValue: moodString){
+                let mood = EntryMood(rawValue: moodString) {
                 let index = EntryMood.allCases.firstIndex(of: mood)
                 
-                segmentedControl.selectedSegmentIndex = index ?? 0
-                
+                moodSegmentedControl.selectedSegmentIndex = index ?? 0
             }
         }
     }
     
     @IBAction func saveTapped(_ sender: UIButton) {
-        let mood = EntryMood.allCases[segmentedControl.selectedSegmentIndex]
-
+        let mood = EntryMood.allCases[moodSegmentedControl.selectedSegmentIndex]
+        
         guard let title = titleTextField.text,
             let bodyText = journalEntryTextView.text,
             !title.isEmpty, !bodyText.isEmpty else { return }
@@ -100,19 +101,18 @@ class EntryDetailViewController: UIViewController {
             entryController?.updateEntry(entry: entry, with: title, bodyText: bodyText, mood: mood)
         } else {
             entryController?.createEntry(with: title, bodyText: bodyText, mood: mood)
-            
         }
         navigationController?.popViewController(animated: true)
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
