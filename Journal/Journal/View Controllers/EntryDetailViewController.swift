@@ -76,6 +76,14 @@ class EntryDetailViewController: UIViewController {
             titleTextField.text = entry?.title
             journalEntryTextView.text = entry?.bodyText
         }
+        
+        if let moodString = entry?.mood,
+            let mood = EntryMood(rawValue: moodString){
+            let index = EntryMood.allCases.firstIndex(of: mood)
+            
+            segmentedControl.selectedSegmentIndex = index ?? 0
+            
+        }
     }
     
     
