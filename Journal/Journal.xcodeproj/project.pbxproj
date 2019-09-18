@@ -20,6 +20,7 @@
 		0E4F3E8D23302409006156A0 /* EntryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F3E8C23302409006156A0 /* EntryController.swift */; };
 		0E4F3E9023304889006156A0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F3E8F23304889006156A0 /* Colors.swift */; };
 		9E81F6A32331858300D23250 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E81F6A22331858300D23250 /* Default-568h@2x.png */; };
+		9EF002CD2332C364003D5CD8 /* EntryRepresentaiton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF002CC2332C364003D5CD8 /* EntryRepresentaiton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		9E81F6A22331858300D23250 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9E81F6A42331860A00D23250 /* Entries 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Entries 2.xcdatamodel"; sourceTree = "<group>"; };
 		9EF002CB2332C285003D5CD8 /* Entries 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Entries 3.xcdatamodel"; sourceTree = "<group>"; };
+		9EF002CC2332C364003D5CD8 /* EntryRepresentaiton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRepresentaiton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				0E4F3E84233022A3006156A0 /* Entry+Convenience.swift */,
+				9EF002CC2332C364003D5CD8 /* EntryRepresentaiton.swift */,
 				0E4F3E87233022C7006156A0 /* CoreDataStack.swift */,
 				0E4F3E8923302309006156A0 /* Entries.xcdatamodeld */,
 			);
@@ -213,6 +216,7 @@
 				0E4F3E85233022A3006156A0 /* Entry+Convenience.swift in Sources */,
 				0E4F3E9023304889006156A0 /* Colors.swift in Sources */,
 				0E4F3E7C23301D93006156A0 /* EntriesTableViewController.swift in Sources */,
+				9EF002CD2332C364003D5CD8 /* EntryRepresentaiton.swift in Sources */,
 				0E4F3E8023301E21006156A0 /* EntryTableViewCell.swift in Sources */,
 				0E4F3E8B23302309006156A0 /* Entries.xcdatamodeld in Sources */,
 				0E4F3E88233022C7006156A0 /* CoreDataStack.swift in Sources */,
