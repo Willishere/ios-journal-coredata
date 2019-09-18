@@ -39,6 +39,7 @@
 		0E4F3E8F23304889006156A0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9E81F6A22331858300D23250 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9E81F6A42331860A00D23250 /* Entries 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Entries 2.xcdatamodel"; sourceTree = "<group>"; };
+		9EF002CB2332C285003D5CD8 /* Entries 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Entries 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,10 +421,11 @@
 		0E4F3E8923302309006156A0 /* Entries.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9EF002CB2332C285003D5CD8 /* Entries 3.xcdatamodel */,
 				9E81F6A42331860A00D23250 /* Entries 2.xcdatamodel */,
 				0E4F3E8A23302309006156A0 /* Entries.xcdatamodel */,
 			);
-			currentVersion = 9E81F6A42331860A00D23250 /* Entries 2.xcdatamodel */;
+			currentVersion = 9EF002CB2332C285003D5CD8 /* Entries 3.xcdatamodel */;
 			path = Entries.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
